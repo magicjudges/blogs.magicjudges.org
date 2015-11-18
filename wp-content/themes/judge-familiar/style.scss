@@ -1,0 +1,64 @@
+/*
+Theme Name: Judge Familiar
+Theme URI: http://underscores.me/
+Author: Joel Krebs
+Author URI: http://www.aleaiactaest.ch
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: judge-familiar
+Tags: response
+*/
+
+body {
+  background: #f1f1f1;
+}
+
+#page {
+	background-color: white;
+	margin-top: 20px;
+	max-width: 61.25rem;
+}
+
+.site-header-image {
+	display: none;
+}
+
+@media (min-width: 62em) {
+	.site-header-image {
+		display: block;
+	}
+}
+
+@media (max-width: 62em) {
+	header .site-title, header .site-description {
+		position: relative;
+	}
+}
+
+.site-header-image img {
+	border-top: 4px solid black;
+	border-bottom: 1px solid black;
+	max-width: none;
+	padding: 0;
+}
+
+.site-description {
+  line-height: 2em;
+	margin: 1.44em 0 1.44em 0;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Raleway:500);
+
+body,
+button,
+input,
+select,
+textarea {
+	color: #404040;
+	font-family: "Raleway", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.5;
+}

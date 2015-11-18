@@ -1,0 +1,16 @@
+#language-links-meta-box label {
+    display: inline-block;
+    min-width: 75px;
+}
+
+#language-links-meta-box input.text {
+    width: 375px;
+}
+
+.language-link {
+    margin-bottom: 15px;
+}
+
+.button.remove-language {
+    margin-left: 10px;
+}

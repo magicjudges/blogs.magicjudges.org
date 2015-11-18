@@ -1,0 +1,29 @@
+ul.cets-find-us-list li {
+	list-style: none;
+	margin: 0.5em 12px 0.5em 0;
+	float: left;
+	width: 100px; /* may need to resize for other social site's labels. 45% might be better */
+	background: none;
+	padding: 0;
+	border: none;
+}
+ul.cets-find-us-list li a {
+	padding: 4px 0 6px 29px;
+	border: none;
+	margin: 0;
+}	
+.fix {clear: both; height:1px; margin: -1px 0 0; overflow:hidden;}
+
+
+/* Icons */
+ul.cets-find-us-list li.facebook a { background: url(../images/socialmedia.png) no-repeat 0 0 !important; }
+ul.cets-find-us-list li.twitter a { background: url(../images/socialmedia.png) no-repeat 0 -30px !important; }
+ul.cets-find-us-list li.flickr a { background: url(../images/socialmedia.png) no-repeat 0 -60px !important; }
+ul.cets-find-us-list li.youtube a { background: url(../images/socialmedia.png) no-repeat 0 -90px !important; }
+ul.cets-find-us-list li.emailus a { background: url(../images/socialmedia.png) no-repeat 0 -150px !important; }
+ul.cets-find-us-list li.rss a { background: url(../images/socialmedia.png) no-repeat 0 -180px !important; }
+ul.cets-find-us-list li.picasa a { background: url(../images/socialmedia.png) no-repeat 0 -210px !important; }
+ul.cets-find-us-list li.googleplus a { background: url(../images/socialmedia.png) no-repeat 0 -242px !important; }
+ul.cets-find-us-list li.pinterest a { background: url(../images/socialmedia.png) no-repeat 0 -272px !important; }
+ul.cets-find-us-list li.instagram a { background: url(../images/socialmedia.png) no-repeat 0 -302px !important; }
+ul.cets-find-us-list li.podcasts a { background: url(../images/socialmedia.png) no-repeat 0 -332px !important; }

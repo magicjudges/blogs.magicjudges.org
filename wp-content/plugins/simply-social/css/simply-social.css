@@ -1,0 +1,150 @@
+div.size_32, div.size_20 {
+	margin: 0;
+	padding: 0;
+	margin-top: 16px;
+	text-align: center;
+	clear: both;
+}
+
+div.size_32 a:hover, .size_20 a:hover, div.size_32 a, div.size_20 a {
+	border: 0;
+	background:none;
+	text-decoration: none;
+}
+.simply-social-tagline {
+	margin-bottom: 8px;
+}
+.entry ul.sociallinks, .post ul.sociallinks, .single .sociallinks li {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 15px;
+/*	margin-top: 12px;*/
+}
+.simply-social-wrapper .sociallinks li {
+	display: inline-block;
+	list-style: none;
+	text-align: center;
+	margin: 4px;
+}
+
+.size_20 .sociallinks a {
+	padding: 2px 1px 6px 16px;
+	border: none;
+	width: 16px;
+}
+
+.size_20 .sociallinks li, #contentwide .size_20 .sociallinks li, #content .size_20 .sociallinks li {
+	padding-bottom: 5px;
+}
+#main .simply-social-wrapper a:hover{
+	background:none;
+	border-bottom: none;
+}
+
+.size_32 .sociallinks a {
+	width: 32px;
+	padding: 4px 1px 17px 28px;
+	border: none;
+}
+
+.size_32 .sociallinks li, #contentwide .size_32 .sociallinks li, #content .size_32 .sociallinks li {
+	padding-bottom: 15px;
+}
+
+.simply-social-wrapper ul li::before {
+	content: none;
+}
+
+/*normal state */
+.size_32  .delicious { background: url(../images/32.png) no-repeat -96px 0px !important;}
+.size_32  .digg { background: url(../images/32.png) no-repeat -96px -42px !important;}
+.size_32  .email { background: url(../images/32.png) no-repeat -96px -126px !important;  }
+.size_32  .email2 { background: url(../images/32.png) no-repeat -96px -126px !important; }
+.size_32  .email-bak { background: url(../images/32.png) no-repeat -96px -168px !important;  }
+.size_32  .facebook { background: url(../images/32.png) no-repeat -96px -210px !important;  }
+.size_32  .pdf { background: url(../images/32.png) no-repeat -96px -252px !important;  }
+.size_32  .pdf2 { background: url(../images/32.png) no-repeat -96px -294px !important;  }
+.size_32  .print { background: url(../images/32.png) no-repeat -96px -336px !important;  }
+.size_32  .print2 { background: url(../images/32.png) no-repeat -96px -378px !important;  }
+.size_32  .print-bak { background: url(../images/32.png) no-repeat -96px -420px !important;  }
+.size_32  .reddit { background: url(../images/32.png) no-repeat -96px -462px !important;  }
+.size_32  .stumbleupon { background: url(../images/32.png) no-repeat -96px -504px !important;}
+.size_32  .twitter { background: url(../images/32.png) no-repeat -96px -546px !important;  }
+.size_32  .googleplus { background: url(../images/32.png) no-repeat -96px -589px !important;  }
+.size_32  .pinterest { background: url(../images/32.png) no-repeat -96px -630px !important;  }
+
+.size_20  .delicious { background: url(../images/20.png) no-repeat -40px 0px !important;}
+.size_20  .digg { background: url(../images/20.png) no-repeat -40px -30px !important;}
+.size_20  .email { background: url(../images/20.png) no-repeat -40px -60px !important;  }
+.size_20  .emailold { background: url(../images/20.png) no-repeat -40px -90px !important;  }
+.size_20  .email2 { background: url(../images/20.png) no-repeat -40px -120px !important; }
+.size_20  .email-bak { background: url(../images/20.png) no-repeat -40px -150px; !important;  }
+.size_20  .facebook { background: url(../images/20.png) no-repeat -40px -180px !important;  }
+.size_20  .pdf { background: url(../images/20.png) no-repeat -40px -210px !important;  }
+.size_20  .pdf2 { background: url(../images/20.png) no-repeat -40px -240px !important;  }
+.size_20  .print { background: url(../images/20.png) no-repeat -40px -270px !important;  }
+.size_20  .print2 { background: url(../images/20.png) no-repeat -40px -300px !important;  }
+.size_20  .print-bak { background: url(../images/20.png) no-repeat -40px -330px !important;  }
+.size_20  .reddit { background: url(../images/20.png) no-repeat -40px -360px !important;  }
+.size_20  .stumbleupon { background: url(../images/20.png) no-repeat -40px -390px !important;}
+.size_20  .twitter { background: url(../images/20.png) no-repeat -40px -420px !important;  }
+.size_20  .googleplus { background: url(../images/20.png) no-repeat -40px -450px !important;  }
+.size_20  .pinterest { background: url(../images/20.png) no-repeat -40px -480px !important;  }
+
+/*hover state*/
+.size_32  .delicious:hover { background: url(../images/32.png) no-repeat 0px 0px !important; }
+.size_32  .digg:hover { background: url(../images/32.png) no-repeat 0px -42px !important;  }
+.size_32  .email:hover { background: url(../images/32.png) no-repeat 0px -126px !important;   }
+.size_32  .email2:hover { background: url(../images/32.png) no-repeat 0px -126px !important;  }
+.size_32  .email-bak:hover { background: url(../images/32.png) no-repeat 0px -168px; !important;   }
+.size_32  .facebook:hover { background: url(../images/32.png) no-repeat 0px -210px !important;   }
+.size_32  .pdf:hover { background: url(../images/32.png) no-repeat 0px -252px !important;   }
+.size_32  .pdf2:hover { background: url(../images/32.png) no-repeat 0px -294px !important;   }
+.size_32  .print:hover { background: url(../images/32.png) no-repeat 0px -336px !important;   }
+.size_32  .print2:hover { background: url(../images/32.png) no-repeat 0px -378px !important;   }
+.size_32  .print-bak:hover { background: url(../images/32.png) no-repeat 0px -420px !important;   }
+.size_32  .reddit:hover { background: url(../images/32.png) no-repeat 0px -462px !important;   }
+.size_32  .stumbleupon:hover { background: url(../images/32.png) no-repeat 0px -504px !important;  }
+.size_32  .twitter:hover { background: url(../images/32.png) no-repeat 0px -546px !important;   }
+.size_32  .googleplus:hover { background: url(../images/32.png) no-repeat -0px -589px !important;  }
+.size_32  .pinterest:hover { background: url(../images/32.png) no-repeat 0px -630px !important;  }
+
+.size_20  .delicious:hover { background: url(../images/20.png) no-repeat 0px 0px !important;}
+.size_20  .digg:hover { background: url(../images/20.png) no-repeat 0px -30px !important;}
+.size_20  .email:hover { background: url(../images/20.png) no-repeat 0px -60px !important;  }
+.size_20  .emailold:hover { background: url(../images/20.png) no-repeat 0px -90px !important;  }
+.size_20  .email2:hover { background: url(../images/20.png) no-repeat 0px -120px !important; }
+.size_20  .email-bak:hover { background: url(../images/20.png) no-repeat 0px -150px; !important;  }
+.size_20  .facebook:hover { background: url(../images/20.png) no-repeat 0px -180px !important;  }
+.size_20  .pdf:hover { background: url(../images/20.png) no-repeat 0px -210px !important;  }
+.size_20  .pdf2:hover { background: url(../images/20.png) no-repeat 0px -240px !important;  }
+.size_20  .print:hover { background: url(../images/20.png) no-repeat 0px -270px !important;  }
+.size_20  .print2:hover { background: url(../images/20.png) no-repeat 0px -300px !important;  }
+.size_20  .print-bak:hover { background: url(../images/20.png) no-repeat 0px -330px !important;  }
+.size_20  .reddit:hover { background: url(../images/20.png) no-repeat 0px -360px !important;  }
+.size_20  .stumbleupon:hover { background: url(../images/20.png) no-repeat 0px -390px !important;}
+.size_20  .twitter:hover { background: url(../images/20.png) no-repeat 0px -420px !important;  }
+.size_20  .googleplus:hover { background: url(../images/20.png) no-repeat 0px -450px !important;  }
+.size_20  .pinterest:hover { background: url(../images/20.png) no-repeat  0px -480px !important;  }
+
+/*old size 16 icons */
+
+/*.size_16  .delicious { background: url(../images/16.png) no-repeat -32px 0px !important;}
+.size_16  .digg { background: url(../images/16.png) no-repeat -32px -26px !important;}
+.size_16 .email { background: url(../images/16.png) no-repeat -32px -52px !important;  }
+.size_16 .facebook { background: url(../images/16.png) no-repeat -32px -78px !important;  }
+.size_16 .pdf { background: url(../images/16.png) no-repeat -32px -104px !important;  }
+.size_16 .print { background: url(../images/16.png) no-repeat -32px -130px !important;  }
+.size_16 .reddit { background: url(../images/16.png) no-repeat -32px -156px !important;  }
+.size_16 .stumbleupon { background: url(../images/16.png) no-repeat -32px -182px !important;  }
+.size_16 .twitter { background: url(../images/16.png) no-repeat -32px -208px !important;  }*/
+
+/*.size_16  .delicious:hover { background: url(../images/16.png) no-repeat 0px 0px !important;}
+.size_16  .digg:hover { background: url(../images/16.png) no-repeat 0px -26px !important;}
+.size_16  .email:hover { background: url(../images/16.png) no-repeat 0px -52px !important;  }
+.size_16  .facebook:hover { background: url(../images/16.png) no-repeat 0px -78px !important;  }
+.size_16  .pdf:hover { background: url(../images/16.png) no-repeat 0px -104px !important;  }
+.size_16  .print:hover { background: url(../images/16.png) no-repeat 0px -130px !important;  }
+.size_16  .reddit:hover { background: url(../images/16.png) no-repeat 0px -156px !important;  }
+.size_16  .stumbleupon:hover { background: url(../images/16.png) no-repeat 0px -182px !important;  }
+.size_16  .twitter:hover { background: url(../images/16.png) no-repeat 0px -208px !important;  }*/

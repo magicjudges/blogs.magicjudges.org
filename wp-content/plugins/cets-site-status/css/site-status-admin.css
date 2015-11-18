@@ -1,0 +1,25 @@
+.option-content {
+	margin-left: 40px;
+}
+
+.options-table th {
+	vertical-align: top;
+	width: 150px;
+}
+
+.wrap .site-status-heading {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	font-size: 14px;
+}
+
+.border {
+	margin-left: 40px;
+	border-style:solid;
+	border-bottom: thin solid #CCC;
+}
+
+.options-selection {
+	margin-left: 10px;
+}

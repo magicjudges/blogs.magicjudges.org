@@ -1,0 +1,35 @@
+#simply-social-shot-wrapper {
+	padding: 8px;
+	text-align: center;
+}
+#simply-social-admin-left {
+	width: 420px;
+	float: left;
+}	
+#simply-social-site-list li {
+	padding-bottom: 15px;
+}
+.icon {
+ display: inline;
+ padding-right: 32px;
+ padding-bottom: 18px;
+ width: 32px;
+ height: 32px;
+}
+
+.li_delicious .icon { background: url(../images/32.png) no-repeat 0px 0px !important;  height: 32px;}
+.li_digg .icon { background: url(../images/32.png) no-repeat 0px -42px !important;  height: 32px; }
+.li_email .icon { background: url(../images/32.png) no-repeat 0px /*-84px*/ -126px !important;  height: 32px;   }
+.li_email2 .icon { background: url(../images/32.png) no-repeat 0px -126px !important;  height: 32px;  }
+.li_email-bak  .icon { background: url(../images/32.png) no-repeat 0px -168px !important;  height: 32px;   }
+.li_facebook .icon { background: url(../images/32.png) no-repeat 0px -210px !important;  height: 32px;   }
+.li_pdf .icon { background: url(../images/32.png) no-repeat 0px -252px !important;   height: 32px;  }
+.li_pdf2 .icon { background: url(../images/32.png) no-repeat 0px -294px !important;   height: 32px;  }
+.li_print .icon  { background: url(../images/32.png) no-repeat 0px -336px !important;   height: 32px;  }
+.li_print2 .icon { background: url(../images/32.png) no-repeat 0px -378px !important;   height: 32px;  }
+.li_print-bak .icon { background: url(../images/32.png) no-repeat 0px -420px !important;   height: 32px;  }
+.li_reddit .icon { background: url(../images/32.png) no-repeat 0px -462px !important;  height: 32px;   }
+.li_stumbleupon .icon { background: url(../images/32.png) no-repeat 0px -504px !important;   height: 32px;  }
+.li_twitter .icon { background: url(../images/32.png) no-repeat 0px -546px !important;  height: 32px;   }
+.li_googleplus .icon { background: url(../images/32.png) no-repeat 0px -589px !important;  height: 32px;   }
+.li_pinterest .icon{ background: url(../images/32.png) no-repeat 0px -630px !important; height: 32px; }

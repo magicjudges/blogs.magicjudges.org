@@ -1,0 +1,22 @@
+#site-status-admin-message{
+	color: black;
+	position: absolute;
+	width: 100%;
+	top: 65px;
+	left: 0;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 15px;
+	padding-top: 5px;
+	z-index: 10000;
+	background-image:url(../images/yellow-background.png);
+	border: none;
+}
+
+#footer #site-status-admin-message p {
+	border-top: none;
+}
+
+#site-status-admin-message .site-status-change-settings-link {
+	color: #900;
+}

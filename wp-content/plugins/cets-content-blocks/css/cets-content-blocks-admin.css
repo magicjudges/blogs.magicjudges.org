@@ -1,0 +1,11 @@
+/* cets-content-blocks-admin.css */ 
+
+span.cets_content_blocks_media_button {
+		background: url(../img/content-blocks-icon-16-16.png) no-repeat scroll left top transparent;
+		height: 16px;
+		width: 16px;
+		vertical-align: text-top;
+		display: inline-block;
+		margin: 0 2px 0 0;
+}
+

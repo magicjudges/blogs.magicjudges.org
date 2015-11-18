@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* CSS Document */
+
+html { height: 100%;}
+
+body {
+	background-color: #fff; 
+	height: 100%;
+	margin: 0;
+	font-family:Verdana, Geneva, sans-serif;
+	line-height: 1.5em;
+}
+
+h1 {font-size: 26px; font-family: Verdana, Verdana, Geneva, sans-serif;}
+
+#content {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -145px;
+}
+
+#left-bar {
+	background-color: #426c9e;
+	float: left;
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	width: 22%; 
+	height: 100%; 
+	z-index: 1;
+	color: white;
+	font-size: 14px;
+}
+
+#topics-head {
+	font-size: 20px;
+	text-align: right;
+	padding-top: 20px;
+	padding-right: 45px;
+	color: white;
+}
+
+.topics-list, .topics-list a  {
+	margin-top: 60px;
+	color: white;
+	padding-right: 10px;
+	list-style: none;
+	text-align: right;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+.topics-list li {
+	padding-bottom: 10px;
+}
+
+#main {
+	padding-left: 23%;
+	z-index: 2;
+	padding-right: 30px;
+	max-width: 1000px;
+	
+}
+
+.site-title {
+	padding-top: 100px;
+}
+
+#logo {
+	background-image: url(../images/uwexce-white-150.png);
+	background-repeat: no-repeat;
+	background-position: right;
+	height: 50px;
+	margin-top: 10px;
+	margin-right: 15px;
+}
+
+.footer {
+	margin-bottom: 0;
+	padding-left: 23%;
+	position: relative;
+/*	height: 145px;
+*/	max-width: 1180px;
+}
+
+.push {
+	height: 145px;
+}
+
+/*#copyright {
+	float: left;
+}
+*/
+#footerLinks {
+	margin-left: 0;
+	padding-left: 0;
+	margin-right: 10px;
+	color: black;
+	line-height: 1.9em;
+}
+
+.footer a, #copyright a{color: #005daa; text-decoration: none;}
+.footer a:hover, #copyright a:hover {color: #2c3a6f; }
+
+#footerLinks li{
+	padding-right: 10px;
+	display: inline;
+	color: black;
+}

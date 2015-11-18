@@ -1,0 +1,8 @@
+span.cets_embedrss_media_button {
+		background: url(../img/cets_EmbedRSS-16-16.gif) no-repeat scroll left top transparent;
+		height: 16px;
+		width: 16px;
+		vertical-align: text-top;
+		display: inline-block;
+		margin: 0 2px 0 0;
+	.wp-core-ui a.cets_embed_rss {padding-left: 0.4em;}

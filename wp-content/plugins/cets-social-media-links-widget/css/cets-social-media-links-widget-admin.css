@@ -1,0 +1,39 @@
+/*
+div.cets-social-admin-section-wrap {
+	padding: 2px;
+	margin-bottom: 4px;
+	border: 1px solid #CCC;
+	background-color: #F1F1F1;
+}
+*/
+div.cets-social-admin-section-wrap {
+
+    background-color: #F9F9F9;
+
+    border: 1px solid #F1F1F1;
+
+    margin-bottom: 4px;
+
+    padding: 0.5em;
+
+}
+
+div.cets-social-admin-note-wrap {
+
+    background-color: #FFFBCC;
+
+    border: 1px solid #E6DB55;
+
+    margin-bottom: 4px;
+
+    padding: 0.5em;
+	
+	font-style: italic;
+	
+}
+div.cets-social-wrap label {
+    cursor: pointer;
+    font-weight: bold;
+
+}
+div.cets-social-wrap label input {font-weight: normal;}
