@@ -49,7 +49,7 @@ add_action('admin_init', 'wpgcal_admin_init', 1);
 function wpgcal_content_save_pre( $content )
 {
 	$parsed = wpgcal_sanitizeinput( htmlspecialchars_decode( stripslashes( $content )));
-	
+
 	// this needs to check for a specific google calendar iframe
 	if( $parsed )
 	{
@@ -83,7 +83,7 @@ class WPgcal_Widget extends WP_Widget
 	function WPgcal_Widget()
 	{
 		$widget_ops = array('classname' => 'widget_gcal', 'description' => __( 'Insert a Google calendar') );
-		$this->WP_Widget('gcal', __('Google Calendar'), $widget_ops);
+		parent::__construct('gcal', __('Google Calendar'), $widget_ops);
 	}
 
 	function widget( $args, $instance )
@@ -105,7 +105,7 @@ class WPgcal_Widget extends WP_Widget
 	function update( $new_instance, $old_instance )
 	{
 		$instance = $old_instance;
-		
+
 		$instance['title'] = strip_tags( $new_instance['title'] );
 
 		$parsed = wpgcal_sanitizeinput( $new_instance['embed'] );
@@ -169,13 +169,13 @@ class WPgcal_Widget extends WP_Widget
 			id="<?php echo $this->get_field_id('height'); ?>"
 			name="<?php echo $this->get_field_name('height'); ?>" type="text"
 			value="<?php echo $instance['height']; ?>" /></p>
-			
+
         <p><label for="<?php echo $this->get_field_id('frameborder'); ?>">
             <?php _e('Border:'); ?></label> <input disabled class="widefat"
             id="<?php echo $this->get_field_id('frameborder'); ?>"
             name="<?php echo $this->get_field_name('frameborder'); ?>" type="text"
             value="<?php echo $instance['frameborder']; ?>" /></p>
-            
+
         <p><label for="<?php echo $this->get_field_id('scrolling'); ?>">
             <?php _e('Scroll Bar:'); ?></label> <input disabled class="widefat"
             id="<?php echo $this->get_field_id('scrolling'); ?>"
@@ -220,13 +220,13 @@ function wpgcal_sanitizeinput( $input )
 
 		preg_match( '/frameborder="([^"]*)"/i' , $parsed['embed'] , $temp );
         $parsed['frameborder'] = absint( $temp[1] );
-        
+
         preg_match( '/scrolling="([^"]*)"/i' , $parsed['embed'] , $temp );
         $parsed['scrolling'] = $temp[1];
-        
+
         preg_match( '/style="([^"]*)"/i' , $parsed['embed'] , $temp );
         $parsed['style'] = $temp[1];
-                
+
 		//check to make sure the code in the iframe tags is google calendar code
         if( preg_match( '/google.com\/calendar(.*)\/embed/i' , $parsed['src'] ))
             return $parsed;
