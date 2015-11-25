@@ -9,7 +9,7 @@ class miniloops extends WP_Widget {
 						);
 		$control_ops = array( 'width' => 700 );
 
-		parent::WP_Widget( 'miniloops', __( 'Mini Loops', 'mini-loops' ), $widget_ops, $control_ops );
+		parent::__construct( 'miniloops', __( 'Mini Loops', 'mini-loops' ), $widget_ops, $control_ops );
 	}
 
 	function widget( $args, $instance ) {
@@ -84,7 +84,7 @@ class miniminiloops extends miniloops {
 						);
 		$control_ops = array(  );
 
-		parent::WP_Widget( 'miniminiloops', __( 'Mini Mini Loops', 'mini-loops' ), $widget_ops, $control_ops );
+		parent::__construct( 'miniminiloops', __( 'Mini Mini Loops', 'mini-loops' ), $widget_ops, $control_ops );
 	}
 
 	function form( $instance ) {
