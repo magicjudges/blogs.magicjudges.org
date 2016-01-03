@@ -48,6 +48,7 @@
                 *
                 * If (autolightbox text links) then
                 */
+                if ( isset($lightboxPlusOptions['text_links']) ) :
                 switch ( $lightboxPlusOptions['text_links'] ) {
                     case 1:
                         foreach($html->find('a[href*=jpg$], a[href*=gif$], a[href*=png$], a[href*=jpeg$], a[href*=bmp$]') as $e) {
@@ -89,7 +90,7 @@
                                         if (!$e->rel) { $e->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
                                         break;
                                 }
-                                break;   
+                                break;
                             }
                             /**
                             * Do Not Display Title is select - yes/no
@@ -115,10 +116,10 @@
                                     */
                                     if ($lightboxPlusOptions['use_caption_title']) {
                                         if ($e->next_sibling()->class = 'wp-caption-text') {
-                                            $e->title = $e->next_sibling()->innertext; 
+                                            $e->title = $e->next_sibling()->innertext;
                                         }
                                         elseif ($e->parent()->next_sibling()->class = 'gallery-caption') {
-                                            $e->title = $e->parent()->next_sibling()->innertext; 
+                                            $e->title = $e->parent()->next_sibling()->innertext;
                                         }
                                     }
 
@@ -175,7 +176,7 @@
                                         if (!$e->parent()->rel) { $e->parent()->rel = 'lightbox['.$postGroupID.$unq_id.']'; }
                                         break;
                                 }
-                                break;   
+                                break;
                             }
 
 
@@ -207,6 +208,7 @@
                         }
                         break;
                 }
+                endif;
 
                 $content = $html->save();
                 $html->clear();

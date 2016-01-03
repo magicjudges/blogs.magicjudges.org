@@ -186,9 +186,10 @@ if ( ! class_exists( 'wp_lightboxplus' ) ) {
 					add_action( 'add_meta_boxes', array( &$this, "lightboxPlusMetaBox" ), 10, 2 );
 				}
 				$this->lbpFinal();
+			} else {
+				add_action( 'template_redirect', array( &$this, 'lbpInitial' ) );
+				add_filter( 'plugin_row_meta', array( &$this, 'RegisterLBPLinks' ), 10, 2 );
 			}
-			add_action( 'template_redirect', array( &$this, 'lbpInitial' ) );
-			add_filter( 'plugin_row_meta', array( &$this, 'RegisterLBPLinks' ), 10, 2 );
 		}
 
 		function lbpInitial() {
@@ -207,7 +208,7 @@ if ( ! class_exists( 'wp_lightboxplus' ) ) {
 			$lightboxPlusOptions = $this->setMissingOptions( $lightboxPlusOptions );
 
 			if ( isset( $lightboxPlusOptions['use_perpage'] ) && $lightboxPlusOptions['use_perpage'] != '0' ) {
-				add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ), intval( $lightboxPlusOptions['load_priority'] ) );
+				add_action( 'wp_enqueue_scripts', array( &$this, 'lightboxPlusAddHeader' ), intval( $lightboxPlusOptions['load_priority'] ) );
 				if ( $lightboxPlusOptions['use_forpage'] && get_post_meta( $the_post_id, '_lbp_use', true ) ) {
 					$this->lbpFinal();
 				}
@@ -230,7 +231,7 @@ if ( ! class_exists( 'wp_lightboxplus' ) ) {
 				 */
 				$lightboxPlusOptions = $this->setMissingOptions( $lightboxPlusOptions );
 
-				add_action( 'wp_print_styles', array( &$this, 'lightboxPlusAddHeader' ), intval( $lightboxPlusOptions['load_priority'] ) );
+				add_action( 'wp_enqueue_scripts', array( &$this, 'lightboxPlusAddHeader' ), intval( $lightboxPlusOptions['load_priority'] ) );
 
 				/**
 				 * Check to see if users wants images auto-lightboxed
@@ -258,15 +259,7 @@ if ( ! class_exists( 'wp_lightboxplus' ) ) {
 		 * @param mixed $optionsName
 		 */
 		function getAdminOptions( $optionsName ) {
-			$savedOptions = get_option( $optionsName );
-			if ( ! empty( $savedOptions ) ) {
-				foreach ( $savedOptions as $key => $option ) {
-					$theOptions[ $key ] = $option;
-				}
-			}
-			update_option( $optionsName, $theOptions );
-
-			return $theOptions;
+			return get_option( $optionsName );
 		}
 
 		/**
@@ -628,9 +621,9 @@ if ( ! class_exists( 'wp_lightboxplus' ) ) {
 				<h3><?php _e( 'With Colorbox (v' . $g_lbp_colorbox_version . ') and PHP Simple HTML DOM Parser (v' . $g_lbp_simple_html_dom_version . ')', 'lightboxplus' ) ?></h3>
 				<h4><?php _e( '<a href="http://www.23systems.net/plugins/lightbox-plus/">Visit plugin site</a> |
                         <a href="http://www.23systems.net/wordpress-plugins/lightbox-plus-for-wordpress/frequently-asked-questions/" title="Lightbox Plus Colorbox FAQ">FAQ</a> |
-                        <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Twitter</a> | 
-                        <a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">Facebook</a> | 
-                        <a href="http://www.linkedin.com/company/23systems" title="23Systems of LinkedIn">LinkedIn</a> | 
+                        <a href="http://twitter.com/23systems" title="@23Systems on Twitter">Twitter</a> |
+                        <a href="http://www.facebook.com/23Systems" title="23Systems on Facebook">Facebook</a> |
+                        <a href="http://www.linkedin.com/company/23systems" title="23Systems of LinkedIn">LinkedIn</a> |
                     <a href="https://plus.google.com/111641141856782935011/posts" title="23System on Google+">Google+</a>' ); ?> |
 					Contribute to Lightbox Plus development costs -
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="inline-donate">
