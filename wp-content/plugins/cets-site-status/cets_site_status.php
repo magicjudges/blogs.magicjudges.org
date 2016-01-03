@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Site Status (CETS)
-Plugin URI: 
+Plugin URI:
 Description: This plugin lets you take your site offline temporarily or redirect traffic to a new website.
 Author: Jason Lemahieu, Chrissy Dillhunt
 Version: 1.8
-Author URI: 
+Author URI:
 
 Copyright 2013 Jason Lemahieu & Chrissy Dillhunt
 
@@ -61,26 +61,26 @@ add_action('admin_menu', 'site_status_admin_submenu');
  * Actually output the settings page
  **/
 function site_status_settings_page() {
-	
+
 	$settings = get_option('site_status_settings', 'not-set');
 	if ($settings == 'not-set') {
 		$settings = site_status_settings_defaults();
 	}
-	
+
 	//check to see if we should process form data
 	if (isset($_REQUEST['site_status_save']) && $_REQUEST['site_status_save']) {
 		check_admin_referer('site-status-settings');
-		
+
 		//redirect_to
 		$redirect_to = strtolower(trim(wp_filter_nohtml_kses($_REQUEST['site_status_to'])));
-				
+
 		//enforce starting http
 		if (strlen($redirect_to) && (substr($redirect_to, 0, 4) != "http")) {
 			$redirect_to = "http://" . $redirect_to;
 		}
-		
+
 		$own_site = strtolower(site_url());
-				
+
 		//method
 		if ($_REQUEST['site_status_method'] == 3 && strlen($_REQUEST['site_status_to']) == 0) {
 			echo "<div class='error'>If you want to redirect to a new site, you must enter a redirection URL.  Please confirm your settings below.</div>";
@@ -88,7 +88,7 @@ function site_status_settings_page() {
 		} else {
 			$settings['method'] = $_REQUEST['site_status_method'];
 		}
-		
+
 		// let super admins set this up.
 		if (!(strpos($redirect_to, $own_site) === false) && !is_super_admin()) {
 			echo "<div class='error'>You can't redirect to your own site. This screen is for redirecting traffic FROM this site to a DIFFERENT site.  Please confirm your settings below.</div>";
@@ -96,33 +96,33 @@ function site_status_settings_page() {
 			$settings['method'] = 1;
 		} else {
 			$settings['redirect_to'] = $redirect_to;
-		}	
-		
-		//message 
+		}
+
+		//message
 		$settings['custom_message'] = $_REQUEST['site_status_custom_message'];
-		
+
 		//message-temporary
 		if (isset($_REQUEST['site_status_custom_message_temporary'])) {
 			$settings['custom_message_temporary'] = 1;
 		} else {
 			$settings['custom_message_temporary'] = 0;
 		}
-		
+
 		//redirect-temporary
 		if (isset($_REQUEST['site_status_redirect_temporary'])) {
 			$settings['redirect_temporary'] = 1;
 		} else {
 			$settings['redirect_temporary'] = 0;
 		}
-		
+
 		//full path
 		if (isset($_REQUEST['site_status_redirect_full_path'])) {
 			$settings['redirect_full_path'] = 1;
 		} else {
 			$settings['redirect_full_path'] = 0;
 		}
-		
-		
+
+
 		//drop_url_param
 		if (is_super_admin()) {
 			if(isset($_REQUEST['site_status_drop_url_param']) ) {
@@ -132,27 +132,27 @@ function site_status_settings_page() {
 			}
 		}
 		update_option('site_status_settings', $settings);
-		
+
 		//blog topics integration
 		if (function_exists('cets_bt_toggle_blog_exclusion')) {
-			
+
 			if ($settings['method'] == 2 || $settings['method'] == 3) {
 				//turn aggregation off
 				update_option('cets_notification', 1);
-				
+
 				//turn notification on
 				global $blog_id;
 				cets_bt_toggle_blog_exclusion($blog_id, 'e');
 			}
 		}
-		
+
 		$settings = get_option('site_status_settings', array());
 		$msg = "Settings Saved!";
 		echo "<div class='updated fade'><p>$msg</p></div>";
 	}
-	
+
 	echo "<div class='wrap'><h2>Site Status</h2>";
-	
+
 	echo "<div class='site-status-currently'>";
 		echo get_site_status_get_admin_message();
 	echo "</div><!-- /site-status-currently -->";
@@ -160,72 +160,72 @@ function site_status_settings_page() {
 	// form setup
 	echo '<form action="' . esc_attr( $_SERVER['REQUEST_URI'] ) . '" method="post">';
 	wp_nonce_field('site-status-settings');
-	
+
 
 
 
 echo "<br /><strong><p class='site-status-heading'>Select a Site Status:</p></strong><br />";
 echo "<div class='options-selection'>";
 			echo "<div class='site-status-method-wrapper'>";
-				
+
 				/*echo "<h4>Run your site normally </h4>";*/
 				echo "<input type='radio' name='site_status_method' id='site_status_method_1' value='1' " . checked($settings['method'], 1, false) . "> Make no changes (default).  <div class='radio-options'><p class='option-content'>If this plugin is currently in use, selecting this option will save your settings should you decide to redirect or take your site offline again in the future.</p>";
-					
+
 			echo "</div></div><!-- /site-status-method-wrapper -->";
-	
+
 		// Option 2 - Site Offline Message
 			echo "<div class='site-status-method-wrapper'>";
-	
+
 					echo "<input type='radio' name='site_status_method' id='site_status_method_2' value='2' " . checked($settings['method'], 2, false) . "> Take your site offline and display a custom message. (This will also remove your site from the network homepage.)<br /><br /> ";
 				echo "<div class='option-content'>";
-					
-						
-					
-							$editor_settings = array( 
+
+
+
+							$editor_settings = array(
 									'media_buttons' => true,
 									'textarea_name' => 'site_status_custom_message',
 									'tinymce' => true,
 									'textarea_rows' => 10
 									);
 							wp_editor(stripslashes($settings['custom_message']), 'site_status_custom_message', $editor_settings);
-							
-						
-						
-				
-			
+
+
+
+
+
 			// permanent vs temporary
 			echo "<p><input type='checkbox' name='site_status_custom_message_temporary' id='site_status_custom_message_temporary'" . checked($settings['custom_message_temporary'], 1, false) . "> This site will be offline <strong>temporarily</strong> (default is <strong>permanently</strong> offline)</p>";
-			
+
 			echo "</div><!-- /option-content -->";
-	
-	
+
+
 			echo "</div><!-- /site-status-method-wrapper -->";
 
 		// Option 3 - Site Redirect
 				echo "<div class='site-status-method-wrapper'>";
-		
+
 				/*echo "<h4>Redirect your website</h4>";*/
 				echo "<input type='radio' name='site_status_method' id='site_status_method_3' value='3' " . checked($settings['method'], 3, false) . "> Redirect all traffic on your website to another website.  (This will also remove your site from the network homepage.)";
-		
+
 				echo "<div class='option-content'>";
-					//todo 
+					//todo
 					echo "<p>New Site Location:<input type='text' name='site_status_to' id='site_status_to' value='" . esc_attr(stripslashes($settings['redirect_to'])) . "' size='60'></p>";
 					// permanent vs temporary
 					echo "<p><input type='checkbox' name='site_status_redirect_temporary' id='site_status_redirect_temporary'" . checked($settings['redirect_temporary'], 1, false) . "> Use a <strong>temporary</strong> redirect (default is a <strong>permanent</strong> redirect)</p>";
-		
+
 					echo "<p><input type='checkbox' name='site_status_redirect_full_path' id='site_status_redirect_full_path'" . checked($settings['redirect_full_path'], 1, false) . ">  Full Path Redirect <strong>(Advanced Users Only)</strong>: Copy the full path and structure when redirecting.  This option is for a very specific type of site transfer and you probably shouldn't check this. (www.myoldsite.com/example will redirect to www.mynewsite.com/example).</p>";
-				
+
 					if (is_super_admin()) {
 						echo "<p><input type='checkbox' name='site_status_drop_url_param' id='site_status_drop_url_param'" . checked($settings['drop_url_param'], 1, false) . ">  Drop 'ss_redir' URL Parameter <strong>(Network Admins Only)</strong>: Remove the 'ss_redir' URL parameter from the redirect URL.</p>";
 					}
-				
+
 				echo "<br /></div><!-- /option-content -->";
 			echo "</div><!-- /site-status-method-wrapper -->";
-			
+
 	/*echo "</td></tr></tbody></table>";*/
-	
+
 	echo '<input type="submit" name="site_status_save" class="button-primary" value="Save Settings" />';
-	
+
 	echo "</form>";
 	echo "</div><!-- options-selection -->";
 	echo "</div><!-- wrap -->";
@@ -233,18 +233,18 @@ echo "<div class='options-selection'>";
 
 /**
  * Retrieves an appropriate message describing what the settings should currently do
- */ 
+ */
 function get_site_status_get_admin_message() {
 
 	$settings = site_status_get_settings();
 	$message = '<p>';
-	
+
 	switch ($settings['method']) {
 		//nothing
 		case 1:
 			return "Your website is not currently offline or redirecting.";
 			break;
-		
+
 		//offline message
 		case 2:
 			if ($settings['custom_message_temporary'] == 1) {
@@ -254,16 +254,16 @@ function get_site_status_get_admin_message() {
 			}
 			$message = "Your website is currently displaying a " . $duration . " offline message instead of its normal content to regular visitors.";
 			break;
-			
+
 		//redirect
-		case 3: 
+		case 3:
 			//todo
 			if ($settings['redirect_temporary'] == 1) {
 				$duration = 'temporary';
 			} else {
 				$duration = 'permanent';
 			}
-			
+
 			if (isset($_GET['page']) && $_GET['page'] == 'site_status') {
 				//admin side
 				return "Your site is using a " . $duration . " redirect for its normal visitors.";
@@ -272,19 +272,19 @@ function get_site_status_get_admin_message() {
 				$new_path = site_status_get_redirect_path();
 				$redirect_link = "<a class='site-status-redirect-preview-link' href='" . $new_path . "'>" . $new_path . "</a>";
 				$message = "Your site is using a " . $duration . " redirect for its normal visitors.  They are being automatically redirected to: " . $redirect_link;
-				
+
 			}
 
 			break;
 	} //switch
-	
+
 	$message .= "</p>";
-	
+
 	if (current_user_can('manage_options') && !is_admin()) {
 		//add change settings link
-		
+
 		$status_page = trailingslashit(site_url()) . "wp-admin/options-general.php?page=site_status";
-		
+
 		$message .= "<p>";
 		$message .= "<a class='site-status-change-settings-link' href='" . $status_page . "'>Change These Settings</a>";
 		$message .= "</p>";
@@ -304,9 +304,9 @@ function site_status_dump_admin_message() {
  * Process page requests. Do we redirect? where? site offline?
  */
 function site_status_do_redirect() {
-	
+
 	$settings = site_status_get_settings();
-	
+
 	if ( current_user_can('edit_posts') ) {
 		//site admin or author, dump a message, ignore rest of settings, and let them continue browsing.
 		global $site_status_admin_message;
@@ -315,74 +315,74 @@ function site_status_do_redirect() {
 		}
 		return;
 	}
-	
+
 	switch ($settings['method']) {
-		
+
 		//do nothing
 		case 1:
 			return;
 			break;
-		
+
 		//custom message
 		case 2:
-						
+
 			//see if we're already at the site-offline page
 			if (isset($_GET['site-offline']) && $_GET['site-offline'] == 1) {
 				//display message
 				include 'custom_message_header.php';
 					echo "<div class='custom-message'>" . wpautop(wptexturize(($settings['custom_message']))) . "</div>";
 				include 'custom_message_footer.php';
-				
+
 			} else {
 				//send them 'home'/?site-offline=1
 				if ($settings['custom_message_temporary'] == 1) {
 					$header_code = "302 Moved Temporarily";
 				} else {
 					$header_code = "301 Moved Permanently";
-				}	
+				}
 				$current_site_root = trailingslashit(site_url());
 				$new_path = $current_site_root . "?site-offline=1";
 				header("HTTP/1.1 " . $header_code);
 				header("Location: " . $new_path);
 				header("Status: " . $header_code);
 			}
-			
+
 			exit();
 			break;
-		
+
 		//redirect
 		case 3:
-		
+
 			if (isset($_GET['ss_dir']) && $_GET['ss_redir'] == 1) {
 				include 'custom_message_header.php';
 					echo "<div class='custom-message'>" . "This website is experiencing a problem with redirects and is currently unavailable.  We apologize for the inconvenience." . "</div>";
 				include 'custom_message_footer.php';
-				
+
 				exit();
 			}
-		
+
 			nocache_headers();
 			if ($settings['redirect_temporary'] == 1) {
 				$header_code = "302 Moved Temporarily";
 			} else {
 				$header_code = "301 Moved Permanently";
-			}	
-			
+			}
+
 			$new_path = site_status_get_redirect_path();
-			
+
 			if (isset($settings['drop_url_param']) && $settings['drop_url_param'] == 1) {
 				//
 			} else {
 				$new_path = site_status_add_qp($new_path, 'ss_redir', 1);
 			}
-			
-			
+
+
 			header("HTTP/1.1 " . $header_code);
 			header("Location: " . $new_path);
 			header("Status: " . $header_code);
 			exit();
 			break;
-	
+
 	}
 
 }
@@ -402,7 +402,7 @@ function site_status_get_full_path() {
  */
 function site_status_get_redirect_path() {
 	$settings = site_status_get_settings();
-	
+
 	if ($settings['redirect_full_path'] == 1) {
 		//copy path
 		$full_request_path = site_status_get_full_path();
@@ -426,11 +426,11 @@ function site_status_add_qp($url, $name, $value) {
 	} else {
 		$url = $url."&".$name."=". rawurlencode($value);
 	}
-	return $url; 
+	return $url;
 }
 
 /**
- * Prefill some options in case of lost or not-yet-set-up data 
+ * Prefill some options in case of lost or not-yet-set-up data
  */
 function site_status_settings_defaults() {
 		$settings = array();
@@ -451,7 +451,7 @@ function site_status_get_settings() {
 		site_status_settings_activate();  //rerun activation
 		$settings = get_option('site_status_settings', array());
 	}
-	
+
 	if (!isset($settings['method'])) { $settings['method'] = 1; }
 	if (!isset($settings['permanent'])) { $settings['permanent'] = 0; }
 	if (!isset($settings['custom_message'])) { $settings['custom_message'] = "<p>Our website is not available at the moment.  We apologize for the inconvenience.</p>"; }
@@ -462,13 +462,13 @@ function site_status_get_settings() {
 	if (!isset($settings['drop_url_param'])) { $settings['drop_url_param'] = 0; }
 
 	return $settings;
-}	
+}
 
 /**
  * Prefills database with options to prevent warnings, etc. run on acativation.
  */
 function site_status_settings_activate() {
-	
+
 	if (get_option('site_status_settings', 'oops-i-dont-exist') == "oops-i-dont-exist") {
 		//prefill settings
 		$fresh = site_status_settings_defaults();
@@ -477,34 +477,34 @@ function site_status_settings_activate() {
 }
 register_activation_hook( __FILE__, 'site_status_settings_activate' );
 
-/** 
+/**
  * CSS - admin
  */
 function site_status_css_admin() {
-	
+
 	// CSS and Javascript for HTML HEAD
 	?>
 	<!-- Site Status Admin CSS -->
 	<link rel="stylesheet" href="<?php echo plugins_url('css/site-status-admin.css',__FILE__)?>" type="text/css" />
 
-    <?php 
+    <?php
 }
 
 
 
 // Add the CSS to public page's Head section
-if (strpos($_SERVER['REQUEST_URI'], 'options-general.php') && $_GET['page'] == 'site_status') {
+if (
+	strpos($_SERVER['REQUEST_URI'], 'options-general.php') &&
+	isset($_GET['page']) &&
+	$_GET['page'] == 'site_status') {
 	add_action( 'admin_head', 'site_status_css_admin' );
 } //if on relevant page
-
-
-
 
 /**
  * CSS Public
  */
 function site_status_css_public() {
-	
+
 	// CSS and Javascript for HTML HEAD
 	?>
 	<!-- Simply Social Public CSS -->
@@ -518,16 +518,16 @@ add_action('wp_head', 'site_status_css_public');
 
 
 function cets_site_status_action_links($links, $file) {
-	
+
 	static $this_plugin;
 	if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
-	
+
 	if ($file == $this_plugin) {
-		
+
 		$settings_link = '<a href="' . admin_url( 'options-general.php?page=site_status' ) . '">Settings</a>';
 		array_unshift($links, $settings_link);
 	}
 	return $links;
-	
+
 }
 add_filter('plugin_action_links', 'cets_site_status_action_links', 10, 2);
