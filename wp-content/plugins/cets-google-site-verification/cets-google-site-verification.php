@@ -18,16 +18,14 @@ class CETS_Google_Site_Verification
 
     public function my_admin_menus()
     {
-        if (is_super_admin()) {
-            add_submenu_page(
-              'options-general.php',
-              'Site Verification',
-              'Site Verification',
-              'manage_network',
-              'cets_google_site_verification',
-              array(&$this, 'settings_page')
-            );
-        }
+      add_submenu_page(
+        'options-general.php',
+        'Site Verification',
+        'Site Verification',
+        'list_users',
+        'cets_google_site_verification',
+        array(&$this, 'settings_page')
+      );
     }
 
     public function settings_page()
