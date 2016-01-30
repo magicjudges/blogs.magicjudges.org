@@ -992,6 +992,7 @@ class xili_language {
 			array('navmenu', __('Nav Menu', 'xili-language'), esc_attr__('List of all languages are inserted and links redirect to home.', 'xili-language')),
 			array('navmenu-a', __('Nav Menu (w/o current lang.)', 'xili-language'), esc_attr__('Current language is not inserted and links redirect to home.', 'xili-language')) ,
 			array('navmenu-1', __('Nav Menu Singular', 'xili-language'), esc_attr__('List of all languages are inserted and links redirect to post or page if exists in other languages.', 'xili-language')),
+			array('navmenu-1o', __('Nav Menu Singular (if exists)', 'xili-language'), esc_attr__('Links redirect to post or page if exists in other languages.', 'xili-language')),
 			array('navmenu-1a', __('Nav Menu Singular (w/o current lang.)', 'xili-language'), esc_attr__('Current language is not inserted and links redirect to post or page if exists in other languages.', 'xili-language')),
 			array('navmenu-1ao', __('Nav Menu Singular (w/o curr. lang and if exists)', 'xili-language'), esc_attr__('Current language is not inserted and links appears and redirect to post or page if exists in other languages.', 'xili-language'))
 		);
@@ -1034,14 +1035,14 @@ class xili_language {
 		if ( $id_exists = $term_data->error_data['term_exists'] ) { // id of existing term
 			$term_id = term_exists( $id_exists, TAXOLANGSGROUP ) ;
 			if ( is_array( $term_id ) ) { // yet in group because array
-					return false; 
+					return false;
 			} else {
 				wp_set_object_terms( $id_exists, 'the-langs-group', TAXOLANGSGROUP);
-				if ( $language_order ) update_term_order ( $id_exists, $this->langs_group_tt_id, $language_order ); 
+				if ( $language_order ) update_term_order ( $id_exists, $this->langs_group_tt_id, $language_order );
 				return true;
 			}
 		}
-		return false;	
+		return false;
 	}
 
 	/**
@@ -3931,7 +3932,7 @@ class xili_language {
 							if ( !in_array ( $new_menu_item->url , array ( $this->insertion_point_dummy_link_menu, $this->insertion_point_dummy_link_page, $this->insertion_point_dummy_link ) ) ) {
 
 								$new_classes = array("insertion-point");
-								
+
 								if ( $new_menu_item->menu_item_parent == 0 )
 									$new_menu_item->menu_item_parent = $menu_object->menu_item_parent; // heritate from insertion point
 
@@ -4016,12 +4017,14 @@ class xili_language {
 						}
 						$language_qv = $this->lang_slug_qv_trans ( $language->slug );
 
-						if ( in_array ( $type, array ( 'navmenu-1', 'navmenu-1a', 'navmenu-1ao' ) ) ) {
+						if ( in_array ( $type, array ( 'navmenu-1', 'navmenu-1a', 'navmenu-1ao', 'navmenu-1o' ) ) ) {
 							$this->doing_list_language = $language->slug; // for date filter if lang_perma
 							$currenturl = $this->current_url ( $this->lang_perma );
 
 							if ( is_singular() && !is_front_page() ) {
-								if ( in_array( $type, array ( 'navmenu-1a', 'navmenu-1' ) ) ){ // 2.13.3
+								if ( in_array( $type, array ( 'navmenu-1a', 'navmenu-1' ) ) ||
+									 ( in_array( $type, array ( 'navmenu-1o' ) ) && $language->slug == the_curlang() ) )
+								{ // 2.13.3
 									$link = $this->link_of_linked_post ( $post->ID, $language->slug ) ;
 								} else {
 									$targetpost = $this->linked_post_in ( $post->ID, $language->slug ) ;
@@ -4863,7 +4866,7 @@ for (var i=0; i < this.form.' .QUETAG .'.length ; i++) { if(this.form.'.QUETAG.'
 				$default['css_li_a_hover'] = 'background: no-repeat center 17px !important;';
 				break;
 			case 'twentyfourteen' :
-			
+
 			default:
 		}
 		return apply_filters ( 'get_default_xili_flag_options', $default, $current_parent_theme );
