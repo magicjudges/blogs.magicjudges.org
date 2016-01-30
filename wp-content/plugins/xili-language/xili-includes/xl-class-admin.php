@@ -955,7 +955,7 @@ class xili_language_admin extends xili_language {
 			<div class="about-footer"><a href="<?php echo $this->repositorylink; ?>" title="xili-language page and docs" target="_blank" style="text-decoration:none" >
 				<img class="about-icon" src="<?php echo plugins_url( 'images/xililang-logo-32.png', $this->file_file ) ; ?>" alt="xili-language logo"/>
 				</a>&nbsp;&nbsp;&nbsp;©&nbsp;
-				<a href="<?php echo $this->devxililink; ?>" target="_blank" title="<?php _e('Author'); ?>" >xiligroup.com</a>™ - msc 2007-2015
+				<a href="<?php echo $this->devxililink; ?>" target="_blank" title="<?php _e('Author'); ?>" >xiligroup.com</a>™ - msc 2007-2016
 			</div>
 		</div>
 		<?php
@@ -4852,9 +4852,12 @@ class xili_language_admin extends xili_language {
 
 			$language_name = '<span class="lang-iso"><abbr class="abbr_name" title="'.$language->description.'">'.$language->name.'</abbr></span>';
 
-			$checkline = '<label title="'.$language->description.'" class="checklang" for="xili_language_check_'.$language->slug.'" class="selectit"></label><input id="xili_language_check_'.$language->slug.'" title="'.$language->description.'" name="xili_language_set" type="radio" value="'.$language->slug .'"  '. $checked.' />&nbsp;&nbsp;'.$language_name ;
+			$checkline = '<label title="'.$language->description.'" class="checklang" for="xili_language_check_'.$language->slug.'" class="selectit"></label>
+			<input type="radio" id="xili_language_check_'.$language->slug.'" title="'.$language->description.'" name="xili_language_set" value="'.$language->slug .'"  '. $checked.' />
+			&nbsp;&nbsp;'.$language_name ;
 
-			$hiddeninput = '<input class="inputid" id="xili_language_'.QUETAG.'-'.$language->slug .'" name="xili_language_'.QUETAG.'-'.$language->slug.'" value="" /><input type="hidden" name="xili_language_rec_'.QUETAG.'-'.$language->slug.'" value=""/>';
+			$hiddeninput = '<input class="inputid" id="xili_language_'.QUETAG.'-'.$language->slug .'" name="xili_language_'.QUETAG.'-'.$language->slug.'" value="" />
+			<input type="hidden" name="xili_language_rec_'.QUETAG.'-'.$language->slug.'" value=""/>';
 
 			if ( $otherpost && $language->slug != $postlang ) {
 				$linepost = $this->temp_get_post ( $otherpost );
@@ -6883,15 +6886,16 @@ class xili_language_admin extends xili_language {
 		// try to download the file
 
 			$resp = wp_remote_get($automattic_locale_root."$version/messages/$locale.mo", $args + array('filename' => $mofile));
-			if (is_wp_error($resp) || 200 != $resp['response']['code'])
-				continue;
-
-			// try to download ms and continents-cities files if exist (will not return false if failed)
-			// with new files introduced in WP 3.4
-			foreach (array('ms', 'continents-cities', 'admin', 'admin-network') as $file) {
-				$url = $automattic_locale_root."$version/messages/$file-$locale.mo";
-				if ( $this->url_exists( $url ) )
-					wp_remote_get( $url, $args + array('filename' => WP_LANG_DIR."/$file-$locale.mo") );
+			if (is_wp_error($resp) || 200 != $resp['response']['code']) {
+				//continue; - forum 2015-12-04 - 16-01-29
+			} else {
+				// try to download ms and continents-cities files if exist (will not return false if failed)
+				// with new files introduced in WP 3.4
+				foreach (array('ms', 'continents-cities', 'admin', 'admin-network') as $file) {
+					$url = $automattic_locale_root."$version/messages/$file-$locale.mo";
+					if ( $this->url_exists( $url ) )
+						wp_remote_get( $url, $args + array('filename' => WP_LANG_DIR."/$file-$locale.mo") );
+				}
 			}
 		}
 
