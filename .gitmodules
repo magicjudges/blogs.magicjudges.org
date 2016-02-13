@@ -1,0 +1,6 @@
+[submodule "wp-content/themes/judge-familiar"]
+	path = wp-content/themes/judge-familiar
+	url = git@github.com:magicjudges/judge-familiar.git
+[submodule "wp-content/themes/mtgjudge-o"]
+	path = wp-content/themes/mtgjudge-o
+	url = git@github.com:magicjudges/mtgjudge-o.git
