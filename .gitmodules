@@ -4,3 +4,15 @@
 [submodule "wp-content/themes/mtgjudge-o"]
 	path = wp-content/themes/mtgjudge-o
 	url = git@github.com:magicjudges/mtgjudge-o.git
+[submodule "wp-content/plugins/external-author"]
+	path = wp-content/plugins/external-author
+	url = git@github.com:magicjudges/external-author.git
+[submodule "wp-content/plugins/lems-judge-image-helper"]
+	path = wp-content/plugins/lems-judge-image-helper
+	url = git@github.com:magicjudges/lems-judge-image-helper.git
+[submodule "wp-content/plugins/lems-mtg-helper"]
+	path = wp-content/plugins/lems-mtg-helper
+	url = git@github.com:magicjudges/lems-mtg-helper.git
+[submodule "wp-content/themes/twentyten-judge-child"]
+	path = wp-content/themes/twentyten-judge-child
+	url = git@github.com:magicjudges/twentyten-judge-child.git
