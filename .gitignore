@@ -4,3 +4,5 @@ wp-content/blogs.dir/
 wp-content/uploads/
 debug.log
 .remote-sync.json
+.editorconfig
+.jsbeautifyrc
