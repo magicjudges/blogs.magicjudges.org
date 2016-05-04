@@ -6,3 +6,4 @@ debug.log
 .remote-sync.json
 .editorconfig
 .jsbeautifyrc
+.DS_Store
