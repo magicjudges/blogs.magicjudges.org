@@ -12,7 +12,7 @@ License: GPL2
 add_action("wp_enqueue_scripts", "judge_banner_scripts");
 
 function judge_banner_scripts() {
-	if (wp_get_theme()->get_stylesheet() === "judge-familiar") {
+	/*if (wp_get_theme()->get_stylesheet() === "judge-familiar") {
 		wp_enqueue_style(
 			"judge-banner-screen",
 			"http://assets.magicjudges.org/judge-banner/css/screen.css",
@@ -34,7 +34,7 @@ function judge_banner_scripts() {
 			"1.0",
 			true // $in_footer
 		);
-	} else {
+	} else {*/
 		// Fallback for the world before judge-familiar
 		wp_enqueue_script(
 			"judge-banner",
@@ -42,9 +42,9 @@ function judge_banner_scripts() {
 			array("jquery"),
 			"0.4"
 		);
-	}
+	//}
 }
 
 function judge_banner() {
-	include plugin_dir_path(__FILE__) . "/banner.html";
+	//include plugin_dir_path(__FILE__) . "/banner.html";
 }
