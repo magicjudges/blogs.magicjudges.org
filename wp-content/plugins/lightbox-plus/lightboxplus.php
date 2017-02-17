@@ -196,7 +196,9 @@ if ( ! class_exists( 'wp_lightboxplus' ) ) {
 			global $the_post_id;
 			global $wp_query;
 
-			$the_post_id = $wp_query->post->ID;
+			if ($wp_query->post) {
+                $the_post_id = $wp_query->post->ID;
+            }
 
 			if ( ! empty( $this->lightboxOptions ) ) {
 				$lightboxPlusOptions = $this->getAdminOptions( $this->lightboxOptionsName );

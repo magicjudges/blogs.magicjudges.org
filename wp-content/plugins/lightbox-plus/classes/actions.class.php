@@ -74,7 +74,7 @@
                     }
                 }
 
-                return $post->ID;
+                return $post ? $post->ID : null;
             }
 
             /**
