@@ -70,7 +70,7 @@ function cets_og_do_head() {
 		
 	//**output the image options
 	if ( !empty( $cetsog_images ) && is_array( $cetsog_images) ) {
-		foreach ( $cetsog_images as $image ) {
+		foreach ( array_reverse($cetsog_images) as $image ) {
 			echo '<meta property="og:image" content="' . esc_url( apply_filters( 'cetsog_images', $image ) ) . '"/>' . "\n";
 		}
 	}
