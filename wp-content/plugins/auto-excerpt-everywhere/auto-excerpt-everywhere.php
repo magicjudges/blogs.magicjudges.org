@@ -121,8 +121,8 @@ function auto_excerpt($content) {
 		if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
 			$default_attr = array(
 			'class'	=> "attachment-".$whatthumb." ".$alignment." autoexcerpt_thumb ".$customclass,
-			'alt'	=> trim(strip_tags(strip_shortcodes( $attachment->post_excerpt ))),
-			'title'	=> trim(strip_tags(strip_shortcodes( $attachment->post_title ))),
+			'alt'	=> trim(strip_tags(strip_shortcodes( $post->post_excerpt ))),
+			'title'	=> trim(strip_tags(strip_shortcodes( $post->post_title ))),
 			);
 			  $thumb=get_the_post_thumbnail($post->ID, $whatthumb,$default_attr);
 			} 
