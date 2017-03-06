@@ -2,7 +2,6 @@
 /*
 Outputs the open graph protocol components
 */
-
 add_action('wp_head', 'cets_og_do_head');
 
 function cets_og_do_head() {
@@ -42,15 +41,11 @@ function cets_og_do_head() {
 		
 	/* og:description */
 	
-	if ( is_singular() && isset($post)  ) {
-		if ( has_excerpt( $post->ID ) ) {
-			$cetsog_description = strip_tags( get_the_excerpt() ); } 
-		else {
-			$cetsog_description = str_replace( "\r\n", ' ' , substr( strip_tags( strip_shortcodes( $post->post_content ) ), 0, 160 ) );
-		}
-	} else {
+	//if ( is_singular() && isset($post) && has_excerpt( $post->ID ) ) {
+                //$cetsog_description = strip_tags( get_the_excerpt() );
+	//} else {
 		$cetsog_description = get_bloginfo( 'description' );
-	}
+	//}
 	echo '<meta property="og:description" content="' . esc_attr( apply_filters( 'cetsog_description', $cetsog_description ) ) . '"/>' . "\n";
 
 	
@@ -70,7 +65,7 @@ function cets_og_do_head() {
 		
 	//**output the image options
 	if ( !empty( $cetsog_images ) && is_array( $cetsog_images) ) {
-		foreach ( array_reverse($cetsog_images) as $image ) {
+		foreach ( $cetsog_images as $image ) {
 			echo '<meta property="og:image" content="' . esc_url( apply_filters( 'cetsog_images', $image ) ) . '"/>' . "\n";
 		}
 	}
@@ -81,11 +76,7 @@ function cets_get_og_images( )	{
 	
 	global $post;
 
-	$theme = wp_get_theme();
-	$theme_name = $theme->Name;
-	
 	$cetsog_images = array();
-	$cetsog_image = '';
 	$cetsog_default_image = cets_og_get_network_default_image();
 	$cetsog_custom_default_image = get_option('cets_og_default_image_source', '');
 
@@ -94,21 +85,21 @@ function cets_get_og_images( )	{
 		$thumbnail_src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
 		$cetsog_images[] = $thumbnail_src[0]; // Add to images array
 	}
-	
-	// 1b) if using headlines or coda custom thumbnails, add it
-	if ($theme_name =='Codacation' && is_single() ) {
-		$ch_featured_image = get_post_meta($post->ID, '_image', true);
-		if ($ch_featured_image != '') {
-			$cetsog_images[] = $ch_featured_image; 
-		} // Add to image array
-	}	
-	if ($theme_name == 'Headlines' && is_single()) {
 
-		$ch_featured_image = get_post_meta($post->ID, 'image', true);
-		if ($ch_featured_image != '') {
-			$cetsog_images[] = $ch_featured_image; 
-		} // Add to image array
-	}
+	// 1b) if using external author plugin, use that
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    if ( is_plugin_active( 'external-author/external-author.php' )
+        && is_plugin_active( 'lems-judge-image-helper/lems-judge-image-helper.php' )
+    ) {
+        $external_authors = get_post_meta( $post->ID, '_external_authors', true );
+        $featured_index = get_post_meta( $post->ID, '_external_authors_featured', true );
+        if ( isset( $external_authors[ $featured_index ] ) ) {
+            $featured_author = $external_authors[ $featured_index ];
+            if ( $featured_author && ! empty( $featured_author['dci'] ) ) {
+                $cetsog_images[] = get_source_from_dci( $featured_author['dci'] ) ; // Add to images array
+            }
+        }
+    }
 	
 	//2a) add the custom default image
 	if ( isset( $cetsog_custom_default_image ) && $cetsog_custom_default_image != '') {
@@ -119,7 +110,7 @@ function cets_get_og_images( )	{
 	if ( isset( $cetsog_default_image ) && $cetsog_default_image != '') {
 		$cetsog_images[] = $cetsog_default_image;
 	}
-	
+
 	global $post, $posts;
 	if (isset($post)) {
 		$content = $post->post_content;

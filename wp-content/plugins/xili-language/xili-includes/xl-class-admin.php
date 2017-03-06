@@ -725,7 +725,10 @@ class xili_language_admin extends xili_language {
 	function select_user_dashboard_locale( $wp_user ) {
 		$available_languages = $this->available_languages( 'orderby=value' );
 		//$selected = $this->admin_side_locale();
-		$selected = get_user_option( 'user_locale', $wp_user->ID ); // thanks to renoir@w3.org 20150510
+		$selected = get_user_option( 'user_locale', $wp_user->ID );
+		if(!$selected) {
+		    $selected = $this->admin_side_locale();
+        }
 		?>
 		<tr>
 			<th scope="row"><?php echo esc_html( __( 'Your dashboard language', 'xili-language' ) ); ?></th>
