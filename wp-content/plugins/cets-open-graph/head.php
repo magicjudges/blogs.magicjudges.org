@@ -41,11 +41,11 @@ function cets_og_do_head() {
 		
 	/* og:description */
 	
-	if ( is_singular() && isset($post) && has_excerpt( $post->ID ) ) {
-        $cetsog_description = strip_tags( get_the_excerpt() );
-	} else {
+	//if ( is_singular() && isset($post) && has_excerpt( $post->ID ) ) {
+                //$cetsog_description = strip_tags( get_the_excerpt() );
+	//} else {
 		$cetsog_description = get_bloginfo( 'description' );
-	}
+	//}
 	echo '<meta property="og:description" content="' . esc_attr( apply_filters( 'cetsog_description', $cetsog_description ) ) . '"/>' . "\n";
 
 	
