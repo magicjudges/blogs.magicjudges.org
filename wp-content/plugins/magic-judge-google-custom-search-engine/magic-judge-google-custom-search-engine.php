@@ -23,7 +23,7 @@ if ( is_admin() ) {
 
 function cets_cse_get_global_search_page() {
 
-	return "http://blogs.magicjudges.org/";
+	return "https://blogs.magicjudges.org/";
 }
 
 function cets_cse_get_google_script() {
