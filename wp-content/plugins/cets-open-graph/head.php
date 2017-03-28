@@ -94,7 +94,7 @@ function cets_get_og_images() {
         if (isset($external_authors[$featured_index])) {
             $featured_author = $external_authors[$featured_index];
             if ($featured_author && !empty($featured_author['dci'])) {
-                $cetsog_images[] = get_source_from_dci($featured_author['dci']); // Add to images array
+                $cetsog_images[] = get_source_from_dci($featured_author['dci'], 300); // Add to images array
             }
         }
     }
