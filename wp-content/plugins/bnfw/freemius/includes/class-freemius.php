@@ -561,9 +561,9 @@
 
 			add_action( 'init', array( &$this, '_redirect_on_clicked_menu_link' ), WP_FS__LOWEST_PRIORITY );
 
-			// remove tracking opt-in
+			// remove tracking links
 //			add_action( 'admin_init', array( &$this, '_add_tracking_links' ) );
-//			add_action( 'admin_init', array( &$this, '_add_license_activation' ) );
+			add_action( 'admin_init', array( &$this, '_add_license_activation' ) );
 			$this->add_ajax_action( 'update_billing', array( &$this, '_update_billing_ajax_action' ) );
 			$this->add_ajax_action( 'start_trial', array( &$this, '_start_trial_ajax_action' ) );
 
