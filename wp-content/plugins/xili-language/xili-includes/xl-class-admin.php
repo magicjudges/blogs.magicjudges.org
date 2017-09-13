@@ -6197,7 +6197,7 @@ class xili_language_admin extends xili_language {
 
 					echo "span.lang-". $language->slug ." { background: url(". $flag_uri .") no-repeat 0% center } \n";
 					echo "span.translated-in a.lang-". $language->slug ." { background: transparent url(". $flag_uri .") no-repeat 50% center ; } \n";
-					echo "span.curlang.lang-" . $language->slug ." a { color:#f5f5f5; text-indent:-9999px ;}\n";
+					echo "span.curlang.lang-" . $language->slug ." { color:#f5f5f5; text-indent:-9999px ;}\n";
 
 					if ( class_exists( 'xili_tidy_tags' ) ) {
 						echo "div#xtt-edit-tag span.curlang.lang-" . $language->slug ." { margin-left:5px; color:#f5f5f5; display:inline-block; height:18px; width:25px; text-indent:-9999px ; }\n";
